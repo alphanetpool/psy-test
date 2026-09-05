@@ -484,6 +484,7 @@
     }
 
     #lock-card,
+    #followup-card,
     #verify-card {
       position: absolute;
       inset: auto 10px 10px 10px;
@@ -496,6 +497,7 @@
     }
 
     #lock-card h4,
+    #followup-card h4,
     #verify-card h4 {
       margin: 0 0 8px;
       line-height: 1.6;
@@ -505,6 +507,7 @@
     }
 
     #lock-card p,
+    #followup-card p,
     #verify-card p {
       margin: 0 0 10px;
       color: #d8dde8;
@@ -564,6 +567,7 @@
       }
 
       #lock-card,
+      #followup-card,
       #verify-card {
         inset: auto 16px 16px 16px;
       }
@@ -643,6 +647,12 @@
             <h4>🔒 باقي الجزء الأكثر أهمية: التصرف العفوي الذي يجعلك تخسر أقرب الناس إليك وكيف تعالجه!</h4>
             <p>نحن لا نطلب منك أي رسوم أو اشتراكات. فقط قم بـ <strong>مشاركة واحدة (1)</strong> على فيسبوك لفك القفل فوراً وقراءة الجزء الأخير.</p>
             <button id="share-btn" class="btn share-btn">📘 مشاركة واحدة على فيسبوك لفك القفل</button>
+          </div>
+
+          <div id="followup-card" class="hidden">
+            <h4>✅ تم فك القفل بنجاح</h4>
+            <p>اضغط متابعة لتأكيد الإكمال، وبعد إغلاق النافذة اضغط مرة ثانية لإظهار الجزء النهائي من النتيجة.</p>
+            <button id="followup-btn" class="btn share-btn">متابعة</button>
           </div>
 
         </div>
@@ -972,6 +982,8 @@
     let userAnswers = [];
     let processingInterval = null;
     const RETURN_STATE_KEY = "quizReturnState";
+    let popunderPrimed = false;
+    let returnGateActive = false;
 
     const phases = {
       welcome: document.getElementById("phase-welcome"),
@@ -994,11 +1006,14 @@
     const solutionIntro = document.getElementById("solution-intro");
     const solutionSteps = document.getElementById("solution-steps");
     const lockCard = document.getElementById("lock-card");
+    const followupCard = document.getElementById("followup-card");
+    const followupBtn = document.getElementById("followup-btn");
     const unlockedSolution = document.getElementById("unlocked-solution");
     const restartBtn = document.getElementById("restart-btn");
 
     document.getElementById("start-btn").addEventListener("click", startQuiz);
     document.getElementById("share-btn").addEventListener("click", handleShareClick);
+    followupBtn.addEventListener("click", handleFollowupClick);
     restartBtn.addEventListener("click", resetQuiz);
     setupMonetagServiceWorker();
     restoreAfterFacebookReturn();
@@ -1173,8 +1188,11 @@
       });
 
       lockCard.classList.remove("hidden");
+      followupCard.classList.add("hidden");
       unlockedSolution.classList.remove("unlocked");
       restartBtn.classList.add("hidden");
+      popunderPrimed = false;
+      returnGateActive = false;
     }
 
     function handleShareClick() {
@@ -1185,13 +1203,31 @@
 
       localStorage.setItem(RETURN_STATE_KEY, JSON.stringify({
         resultKey: calculated.key,
-        userAnswers
+        userAnswers,
+        awaitingFollowup: true
       }));
 
       // Direct redirect to Facebook share dialog in the same tab (no popup window).
       window.location.href = facebookUrl;
 
       // === PLACE POPUNDER TRIGGER SCRIPT HERE ===
+    }
+
+    function handleFollowupClick() {
+      if (!popunderPrimed) {
+        triggerReturnPopunder();
+        popunderPrimed = true;
+        followupBtn.textContent = "إكمال النتيجة الآن";
+        return;
+      }
+
+      followupCard.classList.add("hidden");
+      unlockedSolution.classList.add("unlocked");
+      restartBtn.classList.remove("hidden");
+      localStorage.removeItem(RETURN_STATE_KEY);
+      returnGateActive = false;
+      popunderPrimed = false;
+      followupBtn.textContent = "متابعة";
     }
 
     function triggerReturnPopunder() {
@@ -1203,6 +1239,10 @@
     }
 
     function restoreAfterFacebookReturn() {
+      if (returnGateActive) {
+        return;
+      }
+
       const rawState = localStorage.getItem(RETURN_STATE_KEY);
       if (!rawState) {
         return;
@@ -1216,7 +1256,7 @@
         return;
       }
 
-      if (!saved || !saved.resultKey) {
+      if (!saved || !saved.resultKey || !saved.awaitingFollowup) {
         localStorage.removeItem(RETURN_STATE_KEY);
         return;
       }
@@ -1228,10 +1268,12 @@
       renderResult({ key: saved.resultKey });
       showPhase("result");
       lockCard.classList.add("hidden");
-      unlockedSolution.classList.add("unlocked");
-      restartBtn.classList.remove("hidden");
-      localStorage.removeItem(RETURN_STATE_KEY);
-      triggerReturnPopunder();
+      followupCard.classList.remove("hidden");
+      unlockedSolution.classList.remove("unlocked");
+      restartBtn.classList.add("hidden");
+      returnGateActive = true;
+      popunderPrimed = false;
+      followupBtn.textContent = "متابعة";
     }
 
     function resetQuiz() {
@@ -1242,6 +1284,10 @@
       currentQuestionIndex = 0;
       userAnswers = [];
       localStorage.removeItem(RETURN_STATE_KEY);
+      followupCard.classList.add("hidden");
+      popunderPrimed = false;
+      returnGateActive = false;
+      followupBtn.textContent = "متابعة";
       showPhase("welcome");
     }
   </script>
