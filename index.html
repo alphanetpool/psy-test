@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>اختبار النمط النفسي العميق</title>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="اختبار النمط النفسي العميق: كشف الستار عن خبايا شخصيتك" />
+  <meta property="og:description" content="استبيان تحليلي مبني على مقاييس السلوك والحدس البشري.. 8 أسئلة دقيقة لتحديد فئتك النفسية من بين 16 نمطاً بشرياً." />
+  <!-- Replace og:url and og:image with your real deployed URL and a public 1200x630 image URL. -->
+  <meta property="og:url" content="https://example.com/" />
+  <meta property="og:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMKaEcmIEFadvCC8MNb1ancFc-Eief-rbwKnjn4b6gM8iJlxc9x_zNMqsm_eBy3dSntg0SkQaWSQQMlI2XERKEAQAtXoZjMMEnb4UEs0VQUrZ8_hViTJzWQTeZ8ybiX6vSvrBSUeWO6jlNSjhlipE6EiHSk1NzVC2mqk0kTKFrtUlSgsOTe7nZeHP_GeOB/s0/e637b9e4-b28d-4abf-bd01-1e0170f26a89.jfif" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="ar_AR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="اختبار النمط النفسي العميق: كشف الستار عن خبايا شخصيتك" />
+  <meta name="twitter:description" content="8 أسئلة دقيقة لتحديد فئتك النفسية من بين 16 نمطاً بشرياً." />
+  <meta name="twitter:image" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMKaEcmIEFadvCC8MNb1ancFc-Eief-rbwKnjn4b6gM8iJlxc9x_zNMqsm_eBy3dSntg0SkQaWSQQMlI2XERKEAQAtXoZjMMEnb4UEs0VQUrZ8_hViTJzWQTeZ8ybiX6vSvrBSUeWO6jlNSjhlipE6EiHSk1NzVC2mqk0kTKFrtUlSgsOTe7nZeHP_GeOB/s0/e637b9e4-b28d-4abf-bd01-1e0170f26a89.jfif" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    :root {
+      --bg: #0b0b0e;
+      --bg-soft: #121216;
+      --surface: rgba(22, 26, 36, 0.74);
+      --surface-strong: rgba(20, 25, 34, 0.9);
+      --text: #f2f3f7;
+      --muted: #b6bcc9;
+      --line: rgba(214, 178, 122, 0.24);
+      --line-soft: rgba(159, 169, 190, 0.22);
+      --gold: #d4a15a;
+      --gold-deep: #8b6430;
+      --indigo: #3a3663;
+      --indigo-glow: rgba(94, 87, 189, 0.26);
+      --emerald: #059669;
+      --shadow: 0 18px 42px rgba(0, 0, 0, 0.42);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Tajawal", sans-serif;
+      background: linear-gradient(145deg, var(--bg) 0%, var(--bg-soft) 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.85;
+      letter-spacing: 0.01em;
+      text-rendering: optimizeLegibility;
+      position: relative;
+      text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(42px);
+      opacity: 0.46;
+      animation: ambientFloat 18s ease-in-out infinite alternate;
+    }
+
+    body::before {
+      width: 54vw;
+      height: 54vw;
+      top: -18vw;
+      right: -16vw;
+      background: radial-gradient(circle, rgba(111, 99, 255, 0.36) 0%, rgba(15, 17, 26, 0) 70%);
+    }
+
+    body::after {
+      width: 46vw;
+      height: 46vw;
+      bottom: -16vw;
+      left: -12vw;
+      background: radial-gradient(circle, rgba(212, 161, 90, 0.24) 0%, rgba(12, 12, 16, 0) 70%);
+      animation-delay: 2.4s;
+    }
+
+    @keyframes ambientFloat {
+      0% {
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        transform: translateY(-16px) scale(1.08);
+      }
+    }
+
+    .app {
+      width: min(100%, 920px);
+      margin: 0 auto;
+      padding: 18px 14px;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .phase {
+      display: none;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .phase.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+      animation: fadeInUp 0.56s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero {
+      min-height: calc(100vh - 36px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      gap: 16px;
+      padding: clamp(18px, 5vw, 30px);
+      border: 1px solid var(--line-soft);
+      border-radius: 18px;
+      background: linear-gradient(150deg, rgba(20, 24, 34, 0.72), rgba(11, 13, 20, 0.82));
+      backdrop-filter: blur(8px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(212, 161, 90, 0.08), rgba(255, 255, 255, 0));
+      transform: translateX(-100%);
+      animation: sheen 8.5s linear infinite;
+    }
+
+    @keyframes sheen {
+      to {
+        transform: translateX(100%);
+      }
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(1.72rem, 5.7vw, 2.75rem);
+      line-height: 1.38;
+      font-weight: 800;
+      color: #fcfcff;
+      text-wrap: balance;
+      text-shadow: 0 4px 20px rgba(70, 78, 140, 0.28);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero p {
+      margin: 0 auto;
+      max-width: 790px;
+      color: var(--muted);
+      font-size: clamp(1rem, 3.7vw, 1.18rem);
+      position: relative;
+      z-index: 1;
+    }
+
+    .counter-badge {
+      align-self: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 15px;
+      background: rgba(18, 21, 30, 0.78);
+      color: #e8e1d3;
+      font-size: 0.9rem;
+      box-shadow: inset 0 0 0 1px rgba(248, 250, 252, 0.02);
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      font-family: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.22s ease, filter 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.985);
+    }
+
+    .start-btn {
+      align-self: center;
+      width: 100%;
+      max-width: 448px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      color: #eefcf6;
+      background: linear-gradient(135deg, #047857, var(--emerald));
+      border: 1px solid rgba(116, 255, 208, 0.35);
+      box-shadow: 0 12px 26px rgba(5, 150, 105, 0.22), inset 0 1px 0 rgba(220, 252, 231, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .start-btn:hover {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+    }
+
+    .quiz-shell {
+      padding-top: 64px;
+      border: 1px solid var(--line-soft);
+      border-radius: 16px;
+      background: linear-gradient(160deg, rgba(17, 20, 29, 0.76), rgba(9, 12, 18, 0.9));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02), var(--shadow);
+      backdrop-filter: blur(7px);
+      padding-inline: 12px;
+      padding-bottom: 16px;
+    }
+
+    .progress-sticky {
+      position: sticky;
+      top: 8px;
+      z-index: 30;
+      background: rgba(10, 13, 21, 0.82);
+      backdrop-filter: blur(9px);
+      border: 1px solid rgba(214, 178, 122, 0.24);
+      border-radius: 12px;
+      padding: 10px;
+      margin-bottom: 16px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #e4e6ee;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      text-shadow: 0 1px 10px rgba(26, 32, 54, 0.3);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(43, 49, 64, 0.74);
+      border: 1px solid rgba(157, 166, 187, 0.15);
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, #4f46e5 0%, #6d28d9 42%, var(--gold) 100%);
+      box-shadow: 0 0 20px rgba(109, 40, 217, 0.45);
+      transition: width 0.4s ease;
+    }
+
+    .question-wrap {
+      background: transparent;
+      min-height: 380px;
+      padding: 2px;
+    }
+
+    .question-text {
+      margin: 0 0 16px;
+      font-size: clamp(1.17rem, 4.5vw, 1.65rem);
+      line-height: 1.7;
+      color: #f7f8fc;
+      min-height: 120px;
+      font-weight: 700;
+      text-shadow: 0 6px 18px rgba(88, 96, 168, 0.18);
+      transition: opacity 0.26s ease;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .option-btn {
+      text-align: right;
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid rgba(164, 173, 192, 0.2);
+      border-radius: 12px;
+      color: #e8ebf3;
+      padding: 12px;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      opacity: 0;
+      transform: translateX(10px);
+      animation: slideIn 0.4s ease forwards;
+      backdrop-filter: blur(4px);
+    }
+
+    .option-btn:nth-child(2) { animation-delay: 0.04s; }
+    .option-btn:nth-child(3) { animation-delay: 0.08s; }
+    .option-btn:nth-child(4) { animation-delay: 0.12s; }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .option-btn:hover {
+      background: rgba(31, 40, 58, 0.84);
+      border-color: rgba(212, 161, 90, 0.45);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(14, 18, 28, 0.46);
+    }
+
+    .option-btn.selected {
+      border-color: rgba(212, 161, 90, 0.7);
+      background: linear-gradient(145deg, rgba(56, 44, 28, 0.52), rgba(30, 33, 54, 0.8));
+      box-shadow: 0 0 0 1px rgba(212, 161, 90, 0.18), 0 10px 24px rgba(212, 161, 90, 0.13);
+    }
+
+    .processing {
+      min-height: calc(100vh - 36px);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 22px;
+      border: 1px solid var(--line-soft);
+      border-radius: 18px;
+      background: linear-gradient(155deg, rgba(17, 21, 31, 0.74), rgba(11, 12, 18, 0.9));
+      backdrop-filter: blur(9px);
+      box-shadow: var(--shadow);
+    }
+
+    .pulse-core {
+      width: 92px;
+      height: 92px;
+      border-radius: 999px;
+      margin: 0 auto 16px;
+      position: relative;
+      background: radial-gradient(circle, rgba(132, 96, 255, 0.9) 0%, rgba(49, 43, 106, 0.92) 75%);
+      box-shadow: 0 0 0 rgba(119, 105, 255, 0.42);
+      animation: heartbeat 1.45s infinite;
+      border: 1px solid rgba(196, 179, 255, 0.33);
+    }
+
+    .pulse-core::before {
+      content: "🧠";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      filter: drop-shadow(0 2px 8px rgba(14, 14, 30, 0.5));
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(0.97); box-shadow: 0 0 0 0 rgba(115, 101, 255, 0.42); }
+      60% { transform: scale(1); box-shadow: 0 0 0 24px rgba(115, 101, 255, 0); }
+      100% { transform: scale(0.97); box-shadow: 0 0 0 0 rgba(115, 101, 255, 0); }
+    }
+
+    .processing-text {
+      margin: 0;
+      color: #ebeafd;
+      font-size: 1.03rem;
+      min-height: 32px;
+      transition: opacity 0.25s ease;
+    }
+
+    .result-wrap {
+      padding: 14px;
+      border: 1px solid var(--line-soft);
+      border-radius: 16px;
+      background: linear-gradient(160deg, rgba(18, 21, 32, 0.78), rgba(10, 12, 19, 0.92));
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+    }
+
+    .result-header {
+      margin: 0 0 12px;
+      font-size: clamp(1.24rem, 4.6vw, 1.95rem);
+      line-height: 1.5;
+      color: #f8f6f1;
+      text-shadow: 0 2px 14px rgba(122, 113, 206, 0.24);
+    }
+
+    .analysis-paragraph {
+      margin: 0 0 14px;
+      color: #e4e7ef;
+      font-size: 1.01rem;
+    }
+
+    .metrics {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .metric {
+      background: var(--surface);
+      border: 1px solid rgba(161, 170, 188, 0.24);
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 0.95rem;
+      backdrop-filter: blur(6px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .metric.green strong { color: #82f0cb; }
+    .metric.blue strong { color: #b4d4ff; }
+    .metric.gold strong { color: #f5cc8e; }
+
+    .locked-section {
+      position: relative;
+      border: 1px solid var(--line-soft);
+      border-radius: 12px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(15, 19, 30, 0.92) 0%, rgba(9, 12, 20, 0.96) 100%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    }
+
+    .blurred-zone {
+      padding: 18px;
+      filter: blur(6px);
+      opacity: 0.58;
+      user-select: none;
+      transition: filter 0.48s ease, opacity 0.48s ease;
+    }
+
+    .blurred-zone.unlocked {
+      filter: blur(0);
+      opacity: 1;
+      user-select: auto;
+    }
+
+    .blurred-zone h3 {
+      margin: 0 0 10px;
+      color: #f2c689;
+      font-size: 1.06rem;
+      text-shadow: 0 2px 12px rgba(146, 105, 53, 0.28);
+    }
+
+    .blurred-zone p,
+    .blurred-zone li {
+      color: #d7dbe6;
+      font-size: 0.96rem;
+    }
+
+    .blurred-zone ul {
+      margin: 0;
+      padding-inline-start: 18px;
+    }
+
+    #lock-card,
+    #verify-card {
+      position: absolute;
+      inset: auto 10px 10px 10px;
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.36);
+    }
+
+    #lock-card h4,
+    #verify-card h4 {
+      margin: 0 0 8px;
+      line-height: 1.6;
+      font-size: 1rem;
+      color: #faf7f1;
+      text-shadow: 0 2px 10px rgba(64, 74, 120, 0.2);
+    }
+
+    #lock-card p,
+    #verify-card p {
+      margin: 0 0 10px;
+      color: #d8dde8;
+      font-size: 0.93rem;
+      line-height: 1.8;
+    }
+
+    .share-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 0.96rem;
+      color: #ecfff7;
+      background: linear-gradient(135deg, #047857, var(--emerald));
+      border: 1px solid rgba(124, 255, 211, 0.33);
+      font-weight: 800;
+      box-shadow: 0 10px 22px rgba(5, 150, 105, 0.2);
+    }
+
+    .share-btn:hover {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .timer {
+      text-align: center;
+      font-size: 2.35rem;
+      font-weight: 800;
+      color: #f2c78e;
+      line-height: 1;
+      margin-bottom: 10px;
+      text-shadow: 0 0 20px rgba(212, 161, 90, 0.34);
+    }
+
+    .ad-banner-slot {
+      margin-top: 12px;
+      border: 1px dashed rgba(214, 178, 122, 0.5);
+      border-radius: 10px;
+      min-height: 260px;
+      display: grid;
+      place-items: center;
+      background: rgba(16, 20, 30, 0.8);
+      padding: 10px;
+      color: #dde3ef;
+      text-align: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .ad-box {
+      width: min(100%, 300px);
+      min-height: 250px;
+      border: 1px solid rgba(196, 205, 220, 0.3);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 0.9rem;
+      color: #9ea8bb;
+      margin-inline: auto;
+      background: rgba(12, 15, 24, 0.65);
+    }
+
+    .smartlink-ad {
+      text-decoration: none;
+      width: min(100%, 300px);
+      min-height: 250px;
+      border: 1px solid rgba(196, 205, 220, 0.3);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 0.95rem;
+      color: #f1f5f9;
+      margin-inline: auto;
+      padding: 14px;
+      background: linear-gradient(160deg, rgba(23, 29, 43, 0.92), rgba(12, 15, 24, 0.92));
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .smartlink-ad:hover {
+      transform: translateY(-1px);
+      border-color: rgba(212, 161, 90, 0.55);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.32);
+    }
+
+    .restart-wrap {
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .restart-btn {
+      border: 1px solid rgba(212, 161, 90, 0.45);
+      border-radius: 10px;
+      background: rgba(16, 21, 32, 0.7);
+      color: #ece4d4;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .restart-btn:hover {
+      border-color: rgba(212, 161, 90, 0.7);
+      background: rgba(19, 24, 35, 0.92);
+    }
+
+    @media (min-width: 760px) {
+      .metrics {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .question-text {
+        min-height: 92px;
+      }
+
+      #lock-card,
+      #verify-card {
+        inset: auto 16px 16px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section id="phase-welcome" class="phase active">
+      <div class="hero">
+        <h1>اختبار النمط النفسي العميق: كشف الستار عن خبايا شخصيتك</h1>
+        <p>استبيان تحليلي مبني على مقاييس السلوك والحدس البشري.. 8 أسئلة دقيقة لتحديد فئتك النفسية من بين 16 نمطاً بشرياً والوقوف على العقدة التي تعيق مستقبلك.</p>
+        <div class="counter-badge">👁️ تمت معالجة 184,520 تحليلاً نفسياً هذا الأسبوع</div>
+        <button id="start-btn" class="btn start-btn">ابدأ التحليل النفسي الآن (مجاناً 🎯)</button>
+      </div>
+    </section>
+
+    <section id="phase-quiz" class="phase">
+      <div class="quiz-shell">
+        <div class="progress-sticky">
+          <div class="progress-head">
+            <span id="progress-label">السؤال 1 من 8</span>
+            <span id="progress-percent">12%</span>
+          </div>
+          <div class="progress-track">
+            <div id="progress-bar" class="progress-bar"></div>
+          </div>
+        </div>
+
+        <div class="question-wrap" id="question-wrap">
+          <h2 id="question-text" class="question-text"></h2>
+          <div id="options-wrap" class="options"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="phase-processing" class="phase">
+      <div class="processing">
+        <div>
+          <div class="pulse-core" aria-hidden="true"></div>
+          <p id="processing-text" class="processing-text">جاري مطابقة الاستجابات مع المصفوفة النفسية...</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="phase-result" class="phase">
+      <div class="result-wrap">
+        <h3 id="result-header" class="result-header"></h3>
+        <p id="analysis-text" class="analysis-paragraph"></p>
+
+        <div class="metrics">
+          <article class="metric green">
+            <strong>🟢 السلاح الخفي (نقطة القوة):</strong>
+            <span id="metric-strength"></span>
+          </article>
+          <article class="metric blue">
+            <strong>🔵 النمط الاجتماعي:</strong>
+            <span id="metric-social"></span>
+          </article>
+          <article class="metric gold">
+            <strong>🟡 نزيف الطاقة (المشكلة الحالية):</strong>
+            <span id="metric-drain"></span>
+          </article>
+        </div>
+
+        <div class="locked-section">
+          <div id="unlocked-solution" class="blurred-zone">
+            <h3>خريطة التعافي والعائق السرّي الخاص بنمطك</h3>
+            <p id="solution-intro"></p>
+            <ul id="solution-steps"></ul>
+            <div class="restart-wrap">
+              <button id="restart-btn" class="btn restart-btn hidden">إعادة الاختبار 🔄</button>
+            </div>
+          </div>
+
+          <div id="lock-card">
+            <h4>🔒 باقي الجزء الأكثر أهمية: التصرف العفوي الذي يجعلك تخسر أقرب الناس إليك وكيف تعالجه!</h4>
+            <p>نحن لا نطلب منك أي رسوم أو اشتراكات. فقط قم بـ <strong>مشاركة واحدة (1)</strong> على فيسبوك لفك القفل فوراً وقراءة الجزء الأخير.</p>
+            <button id="share-btn" class="btn share-btn">📘 مشاركة واحدة على فيسبوك لفك القفل</button>
+          </div>
+
+          <div id="verify-card" class="hidden">
+            <h4>⏳ جاري التحقق من إكمال المشاركة وتأكيد الرابط...</h4>
+            <div id="countdown" class="timer">5</div>
+            <div class="ad-banner-slot">
+              <!-- === ADSTERRA SMARTLINK === -->
+              <a class="smartlink-ad" href="https://www.profitableratecpmnetwork.com/f5rmrw657?key=7215fbc40346436d62c31ad6e374fdb1" target="_blank" rel="noopener noreferrer">
+                عرض موصى به - اضغط للمتابعة
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const QUIZ_QUESTIONS = [
+      {
+        question: "عندما تضعك الحياة أمام مفترق طرق وقرار مصيري حاسم، ما هي بوصلتك الأولى؟",
+        type: "main",
+        options: [
+          { text: "أ) التحليل العقلاني البارد وتقييم الربح والخسارة بلغة الأرقام.", main: "A" },
+          { text: "ب) الحدس الداخلي والشعور القاطع الذي يتشكل في صدري فوراً.", main: "B" },
+          { text: "ج) التفكير في مدى تأثير هذا القرار على الأشخاص الذين أحبهم وأحميهم.", main: "C" },
+          { text: "د) البحث عن الخيار الذي يمنحني الحرية ويفك عني أي قيد مستقبلي.", main: "D" }
+        ]
+      },
+      {
+        question: "ما هو السلوك الذي يجعلك تبتعد عن الشخص فوراً وتضعه في خانة الحظر النفسي؟",
+        type: "main",
+        options: [
+          { text: "أ) الغباء المتكرر، اللاعقلانية، أو إضاعة وقتي في توافه الأمور.", main: "A" },
+          { text: "ب) النفاق، التزيف العاطفي، واستغلال طيبة الآخرين.", main: "B" },
+          { text: "ج) الخيانة، الغدر، أو عدم تقدير التضحيات التي أقدمها.", main: "C" },
+          { text: "د) محاولة السيطرة عليّ، تقييد حريتي، أو إملائي ما يجب عليّ فعله.", main: "D" }
+        ]
+      },
+      {
+        question: "كيف تتصرف عادةً عندما تمر بضغوطات نفسية أو انكسار داخلي؟",
+        type: "main",
+        options: [
+          { text: "أ) أنعزل فوراً لأعالج أفكاري بمفردي ولا أسمح لأحد برؤية ضعفي.", main: "A" },
+          { text: "ب) أغرق في التفكير الزائد ليلاً، وأستحضر كل التفاصيل والمشاعر بكثافة.", main: "B" },
+          { text: "ج) أستمر في دعم من حولي والتظاهر بالقوة رغم أنني أحتاج الصمت.", main: "C" },
+          { text: "د) أهرب إلى التغيير، الحركة، أو البحث عن شغف جديد ينسيني الضغط.", main: "D" }
+        ]
+      },
+      {
+        question: "ما هي القدرة الخفية التي تشعر أنك تتميز بها عن أغلب من حولك؟",
+        type: "main",
+        options: [
+          { text: "أ) قراءة المشهد العام وحل المعضلات الشائكة ببرودة أعصاب.", main: "A" },
+          { text: "ب) التقاط نبرة الصوت وتغيرات لغة الجسد وفهم المخبأ دون أن يتكلم الآخر.", main: "B" },
+          { text: "ج) الوقوف كالجبل لحماية المقربين مني وتقديم الدعم المخلص لهم.", main: "C" },
+          { text: "د) التكيف السريع مع أي متغير والخروج من الأزمات بحلول مبتكرة.", main: "D" }
+        ]
+      },
+      {
+        question: "أي نوع من التقدير العاطفي يلامس أعمق نقطة في روحك؟",
+        type: "main",
+        options: [
+          { text: "أ) \"أنت شخص ذكي، حكيم، وتدبيرك يثبت دائماً أنك على حق.\"", main: "A" },
+          { text: "ب) \"أنت تملك روحاً عميقة ونقية يفهمها القليلون فقط في هذا العالم.\"", main: "B" },
+          { text: "ج) \"وجودك في حياتي يمنحني الشعور بالأمان، وأنت السند الذي لا يعوض.\"", main: "C" },
+          { text: "د) \"أنت شخص حر، فريد، ولا يمكن لأحد أن يكسر إرادتك.\"", main: "D" }
+        ]
+      },
+      {
+        question: "في علاقاتك المقربة، كيف تتعامل مع الحدود الشخصية؟",
+        type: "sub",
+        options: [
+          { text: "أ) أضع حدوداً صارمة ورسمية منذ البداية ولا أسمح بتجاوزها.", sub: 1 },
+          { text: "ب) أتغاضى وأصبر كثيراً، لكن إذا صدمت الانسحاب يكون صامتاً وأبدياً.", sub: 2 },
+          { text: "ج) أمنح كل شيء بحب، وأتوقع التقدير والوفاء المتبادل فقط.", sub: 3 },
+          { text: "د) لا أحب الالتزامات الخانقة، أحتاج مساحتي الخاصة دائماً للتنفس.", sub: 4 }
+        ]
+      },
+      {
+        question: "ما هو الكابوس النفسي الخفي الذي تخشاه بينك وبين نفسك؟",
+        type: "sub",
+        options: [
+          { text: "أ) الفشل، أو فقدان السيطرة على مجريات حياتي وأهدافي.", sub: 1 },
+          { text: "ب) أن أكتشف أنني عشت مغفلاً أو أن عواطفي أهدرت على من لا يستحق.", sub: 2 },
+          { text: "ج) التهميش، أو أن أصبح عبئاً على الأشخاص الذين بذلت عمري لأجلهم.", sub: 3 },
+          { text: "د) أن أجد نفسي محاصراً في روتين ميت يقتل شغفي وحريتي.", sub: 4 }
+        ]
+      },
+      {
+        question: "كيف يوصفك أصدقاؤك المقربون في جلسة صراحة؟",
+        type: "sub",
+        options: [
+          { text: "أ) الصارم، الصادق، العقلاني الذي يحل المشاكل بدقة.", sub: 1 },
+          { text: "ب) الكتوم، العميق، الذي يختفي فجأة ثم يعود بتحليلات مذهلة.", sub: 2 },
+          { text: "ج) الدائم التضحية، الذي يتذكر الجميع بينما ينسى نفسه.", sub: 3 },
+          { text: "د) العفوي، المبتكر، الذي يغير جو المكان بمجرد حضوره.", sub: 4 }
+        ]
+      }
+    ];
+
+    const MAIN_CATEGORY_LABELS = {
+      A: "القيادية / التحليلية",
+      B: "العاطفية / الحدسية",
+      C: "الاجتماعية / الداعمة",
+      D: "الحرة / المندفعة"
+    };
+
+    const PERSONALITY_DATABASE = {
+      A1: {
+        mainLabel: "القيادية / التحليلية",
+        subLabel: "التكتيكي الصارم",
+        essence: "تسعى إلى الحسم المبني على وقائع، وتعتبر الانضباط مرساة النجاة في عالم مضطرب.",
+        strength: "ترى الفوضى كمعادلة قابلة للفك، وتمتلك شجاعة اتخاذ القرار حين يتردد الجميع.",
+        social: "تمنح الاحترام لمن يلتزم بالكلمة والإنجاز، ولا تنجذب إلى العلاقات الرمادية أو المجاملات الفارغة.",
+        drain: "نزيفك يبدأ حين تتقمص دور المسيطر على كل تفصيلة فتفقد قدرتك على التفويض والراحة.",
+        recoveryIntro: "علاجك لا يحتاج هدم شخصيتك القيادية، بل ضبط إيقاعها حتى لا تنقلب قوتك إلى حمل داخلي مستمر.",
+        remedies: [
+          "اعتمد قاعدة 80/20 في القرارات اليومية: ليس كل شيء يستحق دقة كاملة، وفر طاقتك للقرارات المصيرية فقط.",
+          "حدّد نافذة تفويض أسبوعية تمنح فيها شخصاً موثوقاً مساحة تنفيذ دون تدخل، لتتدرب على الثقة العملية.",
+          "قبل النوم، دوّن ثلاثة انتصارات صغيرة كي لا يختطفك نقد الذات الدائم ويطمس حقيقة تقدمك."
+        ]
+      },
+      A2: {
+        mainLabel: "القيادية / التحليلية",
+        subLabel: "المخطط الصامت",
+        essence: "تعمل في الظل بتركيز عال، وتقرأ المشهد قبل أن تنطق، لذلك يفاجأ الآخرون بدقة استنتاجاتك.",
+        strength: "هدوؤك ليس تردداً؛ إنه مختبر داخلي يبني حلولاً متقنة بعيدة عن الاندفاع العاطفي.",
+        social: "انتقائي في القرب، تراقب القيم لا الكلمات، وتمنح ثقتك على جرعات مدروسة لا على وعود.",
+        drain: "الاستنزاف يظهر حين يطول الصمت وتحبس ألمك خلف وجه ثابت فيتحول التحليل إلى اجترار مرهق.",
+        recoveryIntro: "تحتاج إلى تحويل الصمت من كهف للعزلة إلى أداة واعية للتنظيم العاطفي ثم العودة المتزنة للحياة.",
+        remedies: [
+          "اكتب مخاوفك بلغة مباشرة بلا تنميق، فالتسمية الدقيقة تقلل سطوة القلق وتمنع تضخم السيناريوهات.",
+          "مارس محادثة عميقة واحدة أسبوعياً مع شخص مأمون، كي لا تتحول العزلة إلى عادة دفاعية دائمة.",
+          "استخدم مؤقت 20 دقيقة للتفكير في المشكلة ثم انتقل إلى خطوة عملية، حتى لا يبقى ذهنك في الدوران." 
+        ]
+      },
+      A3: {
+        mainLabel: "القيادية / التحليلية",
+        subLabel: "القيادي الحامي",
+        essence: "تقود بحزم ولكن قلبك موجّه بالحماية، تشعر بمسؤولية أخلاقية عن من تعتمد عليك دوائرهم.",
+        strength: "تجمع بين القرار السريع والضمير الحي، فتخلق توازناً نادراً بين الإنجاز والإنسانية.",
+        social: "في علاقتك القريبة، أنت سدّ الأمان الذي يعود إليه الآخرون عند العواصف الكبرى.",
+        drain: "تتعب حين تتحول الحماية إلى حمل مطلق فتتجاوز حدودك وتنسى احتياجاتك النفسية الخاصة.",
+        recoveryIntro: "شفاؤك يبدأ حين تعيد تعريف الحماية: إسناد واعٍ لا إنقاذ دائم، ومساندة لا استنزاف ذاتي.",
+        remedies: [
+          "ضع حدوداً زمنية للمساندة حتى لا يتحول يومك كله إلى حل أزمات الآخرين على حسابك.",
+          "درّب من تحبهم على اتخاذ قراراتهم بدل تقديم الحل الجاهز، فالنضج المشترك يخفف حملك.",
+          "خصص ساعة أسبوعية للعناية النفسية الصامتة: مشي، كتابة، أو تأمل بلا أي مهام." 
+        ]
+      },
+      A4: {
+        mainLabel: "القيادية / التحليلية",
+        subLabel: "المنفذ المستقل",
+        essence: "تثق بالفعل أكثر من الكلام، وتؤمن أن الكرامة النفسية تبدأ من الاستقلال والإنجاز الذاتي.",
+        strength: "قدرتك على التنفيذ تحت الضغط تمنحك سبقاً عملياً، وتجعلك قادراً على تحويل الفكرة إلى أثر.",
+        social: "تفضّل العلاقات التي تحترم المساحة وتثمّن الجهد، وتبتعد عن التعلق المرهق أو الفوضى.",
+        drain: "نزيفك يظهر حين تبالغ في الاعتماد على نفسك فتمنع الدعم حتى عندما تحتاجه حقاً.",
+        recoveryIntro: "طريقك للتوازن ليس التخلي عن الاستقلال، بل إضافة مرونة إنسانية تسمح بالشراكة الآمنة.",
+        remedies: [
+          "اختر مهمة أسبوعية تنفذها بالتعاون مع شخص موثوق، لتدريب عضلة المشاركة دون فقد السيطرة.",
+          "استبدل جملة " + '"سأفعل كل شيء وحدي"' + " بسؤال: ما الجزء الذي يمكن تفويضه الآن؟",
+          "امنح جسدك فترات توقف حقيقية، فالإنتاج المستمر بلا راحة يطفئ الإبداع تدريجياً."
+        ]
+      },
+      B1: {
+        mainLabel: "العاطفية / الحدسية",
+        subLabel: "المراقب العاطفي",
+        essence: "تقرأ الإشارات الدقيقة في الصوت والوجه، وكأنك ترى ما لا يُقال بين السطور.",
+        strength: "حدسك يلتقط حقيقة النوايا بسرعة، فيحميك من الأقنعة ويقودك إلى الروابط الأصيلة.",
+        social: "تمنح حضوراً دافئاً ومطمئناً، لذلك يفضي الناس إليك بما لا يقولونه لغيرك.",
+        drain: "تُستنزف عندما تلتقط كل مشاعر المكان وتتعامل معها كأنها مسؤوليتك الشخصية المباشرة.",
+        recoveryIntro: "استردادك لطاقتك يبدأ من فصل التعاطف عن التقمص، فتساند دون أن تبتلع الألم كله.",
+        remedies: [
+          "قبل أي تفاعل مرهق، اسأل نفسك: هل هذا الشعور لي أم انتقل إليّ من الآخر؟",
+          "اعتمد طقساً يومياً لتفريغ الشحنة العاطفية بالكتابة أو المشي الهادئ 15 دقيقة.",
+          "مارس جملة حدود رحيمة: " + '"أنا معك، لكن لا أستطيع حمل هذا كله وحدي"' + "."
+        ]
+      },
+      B2: {
+        mainLabel: "العاطفية / الحدسية",
+        subLabel: "المعالج الصامت",
+        essence: "تحمل أوجاعك وأوجاع من تحب بصمت، وتبدو هادئاً بينما عقلك يشتعل بتحليلات متواصلة.",
+        strength: "تمتلك قلباً رحباً وقدرة نادرة على الإنصات العميق، فتتحول قربك إلى مساحة أمان.",
+        social: "في الظاهر متزن وهادئ، وفي العمق شديد الانتقائية، لا تفتح أبوابك إلا لمن يستحق.",
+        drain: "التفكير الليلي الزائد واستعادة التفاصيل القديمة يحولان التعاطف عندك إلى إنهاك مستمر.",
+        recoveryIntro: "شفاؤك يمر عبر تهدئة الذهن لا كبحه، وإعادة توزيع عطائك كي لا يذوب حضورك الداخلي.",
+        remedies: [
+          "طبّق قاعدة الإغلاق الليلي: اكتب ما يؤلمك في ورقة وأجّل تحليله إلى موعد محدد صباحاً.",
+          "خفّض دور المنقذ: ساعد بحدود، ولا تمنح حلولاً لمن يرفض تحمّل مسؤوليته الذاتية.",
+          "استبدل جلد الذات بسؤال بنّاء: ما الدرس العملي الوحيد الذي يمكنني تطبيقه الآن؟"
+        ]
+      },
+      B3: {
+        mainLabel: "العاطفية / الحدسية",
+        subLabel: "المثالي المتأمل",
+        essence: "أنت باحث عن المعنى لا عن الضجيج، وتربط كل حدث بسؤال وجودي حول الصدق والقيمة.",
+        strength: "قدرتك على رؤية العمق الفلسفي تمنحك بصيرة أخلاقية عالية وتوجهاً إنسانياً نقياً.",
+        social: "تنجذب للأرواح الصادقة والحوار العميق، وتنسحب من العلاقات السطحية بلا صدام.",
+        drain: "تتعب عندما تتحول المثالية إلى محكمة قاسية تحاكم بها نفسك والناس باستمرار.",
+        recoveryIntro: "التعافي عندك يبدأ بقبول النقص البشري دون التخلي عن قيمك الجوهرية الأصيلة.",
+        remedies: [
+          "بدل سؤال: لماذا ليس كاملاً؟ اسأل: ما الجزء الجميل الذي تحقق رغم النقص؟",
+          "ضع معيارين فقط للعلاقة الصحية: الصدق والاحترام، ولا تُثقل نفسك بعشرات الشروط.",
+          "اختر فعلاً صغيراً يومياً يجسد قيمك، فالمعنى يُبنى بالممارسة لا بالتفكير وحده."
+        ]
+      },
+      B4: {
+        mainLabel: "العاطفية / الحدسية",
+        subLabel: "الحامي الحساس",
+        essence: "توازن بين الرقة والحزم، وتعرف متى تحتضن ومتى تغلق الباب لتحمي كرامتك.",
+        strength: "تمتلك حساً عالياً بكرامتك الداخلية، فلا تسمح للأذى أن يستقر في دائرتك طويلاً.",
+        social: "تُظهر تعاطفاً عميقاً لمن تثق به، لكنك لا تساوم على حدودك النفسية الجوهرية.",
+        drain: "الإرهاق يظهر عندما تتردد بين المسامحة والبقاء، فتطول منطقة الرماد العاطفي.",
+        recoveryIntro: "طريق التوازن لديك أن تجمع بين الحنان الواضح والقرار الواضح دون تأجيل مؤلم.",
+        remedies: [
+          "عرّف حدودك كتابةً في ثلاث جمل واضحة، وعد إليها كلما تشوش قرارك العاطفي.",
+          "إذا تكرر نفس الجرح ثلاث مرات، انتقل من الحوار إلى القرار بلا مماطلة.",
+          "خصص وقتاً ثابتاً لما يغذي روحك: قراءة، عبادة، أو صحبة مطمئنة تعيدك لذاتك."
+        ]
+      },
+      C1: {
+        mainLabel: "الاجتماعية / الداعمة",
+        subLabel: "السند الوفي",
+        essence: "حضورك يشبه العمود الفقري للعائلة والأصدقاء؛ ثابت حين يتداعى الجميع.",
+        strength: "تمنح الأمان بالفعل لا بالشعار، وتملك قدرة هائلة على الاحتواء العملي وقت الشدة.",
+        social: "وفيّ حتى النهاية، وتُبقي الوعود حيّة في زمن تلاشت فيه الالتزامات سريعاً.",
+        drain: "إرهاقك يبدأ عندما يصبح دور السند واجباً دائماً يستهلكك دون تغذية مقابلة.",
+        recoveryIntro: "تعافيك يمر من تحويل الوفاء إلى علاقة متوازنة: عطاء كريم وحدود واضحة.",
+        remedies: [
+          "اسأل قبل المساعدة: هل يطلب دعماً مؤقتاً أم يعتمد عليّ بديلاً عن مسؤوليته؟",
+          "حدّد يوماً في الأسبوع بلا التزامات اجتماعية لاستعادة طاقتك النفسية بالكامل.",
+          "تعلّم طلب المساندة بصراحة؛ فالقوة لا تعني أن تتحمل وحدك كل شيء."
+        ]
+      },
+      C2: {
+        mainLabel: "الاجتماعية / الداعمة",
+        subLabel: "منظم الاستقرار",
+        essence: "تسعى لصناعة الانسجام من الفوضى، وتكره التوتر المزمن لأنه يستنزف أرواح الجميع.",
+        strength: "مهارتك في تهدئة الأجواء وإعادة ترتيب الأولويات تمنح من حولك شعوراً بالثبات.",
+        social: "تميل للدبلوماسية الذكية، وتبحث عن نقاط الالتقاء قبل تضخيم نقاط الخلاف.",
+        drain: "نزيفك يقع عندما تكبت رأيك الحقيقي لتجنب الصدام، فيتراكم الضيق داخلك بصمت.",
+        recoveryIntro: "توازنك الحقيقي يبدأ حين تدافع عن صوتك الداخلي دون فقد لطفك الإنساني.",
+        remedies: [
+          "استخدم عبارة: " + '"أقدّر الجميع، لكن هذا الحد لا يناسبني"' + " لتثبيت موقفك بهدوء.",
+          "لا تؤجل النقاشات المهمة؛ التأجيل يضاعف التوتر الذي تحاول إطفاءه.",
+          "مارس تفريغاً أسبوعياً لمشاعرك عبر الكتابة حتى لا تتحول المجاملة إلى احتقان."
+        ]
+      },
+      C3: {
+        mainLabel: "الاجتماعية / الداعمة",
+        subLabel: "الحارس المخلص",
+        essence: "عندك إحساس شريف بالواجب تجاه من تحب، وتعتبر حمايتهم جزءاً من هويتك النفسية.",
+        strength: "ولاؤك شديد الصدق، وتملك استعداداً نادراً للتضحية دون ضجيج أو انتظار ثناء.",
+        social: "تقدّس الروابط العائلية والصداقات العميقة، وتكره العلاقات الاستهلاكية العابرة.",
+        drain: "يتسرب استنزافك عندما تنسى نفسك تماماً وتربط قيمتك فقط بمدى إفادتك للآخرين.",
+        recoveryIntro: "تعافيك يبدأ بإدراك أن رعاية ذاتك ليست أنانية، بل شرط لاستمرار عطائك النقي.",
+        remedies: [
+          "أضف بنداً يومياً ثابتاً لرعاية نفسك قبل أي التزام خارجي، ولو لعشرين دقيقة.",
+          "توقف عن الاعتذار حين تقول " + '"لا"' + " لما يتجاوز طاقتك؛ الرفض الواعي يحمي نقاءك.",
+          "قيّم علاقاتك دورياً: هل فيها تبادل عادل أم نزف أحادي الاتجاه؟"
+        ]
+      },
+      C4: {
+        mainLabel: "الاجتماعية / الداعمة",
+        subLabel: "الدبلوماسي الهادئ",
+        essence: "تجيد تهذيب الخلاف وتحويل الصدام إلى حوار، وتقرأ دوافع الناس قبل أحكامهم.",
+        strength: "تمتلك لساناً متزناً وعقلاً منظماً يختار الكلمات التي تبني الجسور لا الجدران.",
+        social: "مقرب من دوائر مختلفة لأنك تمنح كل طرف شعوراً بالإنصاف والاحترام.",
+        drain: "تتعب حين تُجبر على لعب دور الوسيط دائماً حتى في المعارك التي تجرحك شخصياً.",
+        recoveryIntro: "حمايتك تبدأ عندما تتذكر أنك لست مسؤولاً عن إصلاح كل علاقة متصدعة حولك.",
+        remedies: [
+          "ميّز بين نزاع يمكنك خدمته ونزاع يجب أن تنسحب منه حفاظاً على سلامك.",
+          "لا تتوسط في خلاف يمس كرامتك المباشرة؛ هنا يلزم موقف واضح لا وساطة.",
+          "درّب نفسك على الصراحة المختصرة بدل الإطالة التبريرية المرهقة."
+        ]
+      },
+      D1: {
+        mainLabel: "الحرة / المندفعة",
+        subLabel: "المغامر العفوي",
+        essence: "روحك ترفض الجمود وتبحث عن التجربة، وتؤمن أن الحياة تُفهم بالمغامرة لا بالمشاهدة.",
+        strength: "طاقتك الحيوية تُنعش المكان، وتملك شجاعة بدء جديد حتى بعد الخسارات.",
+        social: "تحب الناس ببساطة وعفوية، وتفتح الأبواب بسرعة لمن يحملون صدقاً وحماساً للحياة.",
+        drain: "نزيفك يظهر عندما يتحول الهروب إلى عادة فتترك قضاياك العميقة بلا مواجهة.",
+        recoveryIntro: "تعافيك هو مزج الحرية بالالتزام الذكي: قلب حر وخطة قصيرة تمنع التشتت.",
+        remedies: [
+          "قبل أي قفزة جديدة، اكتب هدفاً واحداً قابلاً للقياس حتى لا تذوب الحماسة في الفوضى.",
+          "واجه شعورك الصعب أولاً ثم تحرك؛ لا تجعل الحركة غطاءً للهروب العاطفي.",
+          "ثبّت عادة صباحية بسيطة تمنح يومك مرساة قبل الانطلاق."
+        ]
+      },
+      D2: {
+        mainLabel: "الحرة / المندفعة",
+        subLabel: "الحلال السريع",
+        essence: "ترى الأزمات كفرص لإظهار براعتك، وتبرع في إيجاد مخارج حين يتجمد الآخرون.",
+        strength: "مرونتك الذهنية وسرعة البديهة تمنحانك قدرة عالية على الإنقاذ العملي تحت الضغط.",
+        social: "تميل للعلاقات التي تقدّر الفعل والنتيجة، وتمل من الجدل الطويل غير المنتج.",
+        drain: "تستنزف عندما تعيش في وضع الطوارئ دائماً، فتفقد الإيقاع الهادئ الضروري للنضج.",
+        recoveryIntro: "توازنك العميق يأتي من الانتقال من عقل الإطفاء إلى عقل البناء طويل المدى.",
+        remedies: [
+          "بعد كل أزمة، خصص 10 دقائق لاستخلاص السبب الجذري حتى لا تتكرر بنفس الشكل.",
+          "قسّم أهدافك إلى مراحل شهرية، فالتراكم الهادئ يوازي بطولة اللحظات الحرجة.",
+          "امنح جسدك راحة منتظمة لأن الإنقاذ المستمر يستهلك الجهاز العصبي سريعاً."
+        ]
+      },
+      D3: {
+        mainLabel: "الحرة / المندفعة",
+        subLabel: "الباحث عن الحرية",
+        essence: "كرامتك مرتبطة بالاستقلال، وتختنق فوراً أمام التقييد أو التحكم أو الابتزاز العاطفي.",
+        strength: "تملك شجاعة قول " + '"لا"' + " في الوقت الذي يخشى فيه الآخرون خسارة القبول.",
+        social: "تفضّل القرب الصادق الذي يحترم المساحة، ولا تحتمل العلاقات التملكية الخانقة.",
+        drain: "نزيفك يبدأ عندما تبالغ في الدفاع عن المسافة فتمنع الحميمية حتى مع الأمناء.",
+        recoveryIntro: "تعافيك في فهم أن الحرية الحقيقية لا تناقض القرب، بل تختار قرباً بلا قيد.",
+        remedies: [
+          "عبّر عن حاجتك للمساحة مبكراً بلغة هادئة، كي لا تتحول إلى انسحاب مفاجئ جارح.",
+          "جرّب مشاركة شعور شخصي واحد أسبوعياً مع شخص موثوق لبناء أمان تدريجي.",
+          "فرّق بين الحدود الصحية والأسوار الصلبة التي تعزلك عن دفء العلاقات."
+        ]
+      },
+      D4: {
+        mainLabel: "الحرة / المندفعة",
+        subLabel: "المحفز المرن",
+        essence: "تملك روحاً مرنة تعيد تشكيل نفسها بعد الصدمات، وتحوّل التغيير إلى وقود للنمو.",
+        strength: "تستحضر حلولاً مبتكرة بسرعة وتبث حماساً حقيقياً في محيطك عند الانطفاء العام.",
+        social: "تحب التنوع البشري وتلتقط الفرص الاجتماعية بذكاء، لكنك لا تحب الأقفاص العاطفية.",
+        drain: "يستنزفك التشتت حين تتوزع طاقتك على بدايات كثيرة دون إغلاق ناضج للنهايات.",
+        recoveryIntro: "اتزانك يأتي من هندسة طاقتك: حرية منضبطة تقود إلى إنجاز ثابت لا اندفاع عابر.",
+        remedies: [
+          "اختر مشروعاً واحداً أساسياً لكل دورة زمنية، وأجّل الباقي إلى قائمة لاحقة.",
+          "استخدم مراجعة أسبوعية: ما الذي بدأته؟ ما الذي أنهيته؟ لمنع تراكم الفوضى.",
+          "حافظ على روتين استشفاء عصبي بسيط: تنفس عميق، نوم منتظم، وتقليل التحفيز الليلي."
+        ]
+      }
+    };
+
+    let currentQuestionIndex = 0;
+    let userAnswers = [];
+    let processingInterval = null;
+    let countdownInterval = null;
+    const RETURN_STATE_KEY = "quizReturnState";
+
+    const phases = {
+      welcome: document.getElementById("phase-welcome"),
+      quiz: document.getElementById("phase-quiz"),
+      processing: document.getElementById("phase-processing"),
+      result: document.getElementById("phase-result")
+    };
+
+    const progressLabel = document.getElementById("progress-label");
+    const progressPercent = document.getElementById("progress-percent");
+    const progressBar = document.getElementById("progress-bar");
+    const questionText = document.getElementById("question-text");
+    const optionsWrap = document.getElementById("options-wrap");
+    const processingText = document.getElementById("processing-text");
+    const resultHeader = document.getElementById("result-header");
+    const analysisText = document.getElementById("analysis-text");
+    const metricStrength = document.getElementById("metric-strength");
+    const metricSocial = document.getElementById("metric-social");
+    const metricDrain = document.getElementById("metric-drain");
+    const solutionIntro = document.getElementById("solution-intro");
+    const solutionSteps = document.getElementById("solution-steps");
+    const lockCard = document.getElementById("lock-card");
+    const verifyCard = document.getElementById("verify-card");
+    const countdownEl = document.getElementById("countdown");
+    const unlockedSolution = document.getElementById("unlocked-solution");
+    const restartBtn = document.getElementById("restart-btn");
+
+    document.getElementById("start-btn").addEventListener("click", startQuiz);
+    document.getElementById("share-btn").addEventListener("click", handleShareClick);
+    restartBtn.addEventListener("click", resetQuiz);
+    setupMonetagServiceWorker();
+    restoreAfterFacebookReturn();
+
+    function setupMonetagServiceWorker() {
+      if (!("serviceWorker" in navigator)) {
+        return;
+      }
+
+      // Register root service worker file after deployment (Cloudflare/GitHub Pages).
+      navigator.serviceWorker.register("sw.js")
+        .then(() => {
+          console.log("Monetag SW registered");
+        })
+        .catch(() => {
+          console.log("Monetag SW registration failed");
+        });
+    }
+
+    function showPhase(key) {
+      Object.values(phases).forEach((phase) => phase.classList.remove("active"));
+      phases[key].classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function startQuiz() {
+      currentQuestionIndex = 0;
+      userAnswers = [];
+      renderQuestion();
+      showPhase("quiz");
+    }
+
+    function renderQuestion() {
+      const total = QUIZ_QUESTIONS.length;
+      const current = QUIZ_QUESTIONS[currentQuestionIndex];
+      const percentage = Math.round((currentQuestionIndex / total) * 100);
+
+      progressLabel.textContent = `السؤال ${currentQuestionIndex + 1} من ${total}`;
+      progressPercent.textContent = `${percentage}%`;
+      progressBar.style.width = `${percentage}%`;
+
+      questionText.style.opacity = "0";
+      setTimeout(() => {
+        questionText.textContent = current.question;
+        questionText.style.opacity = "1";
+      }, 120);
+
+      optionsWrap.innerHTML = "";
+      current.options.forEach((option, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "btn option-btn";
+        btn.style.animationDelay = `${idx * 0.06}s`;
+        btn.textContent = option.text;
+
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".option-btn").forEach((el) => el.disabled = true);
+          btn.classList.add("selected");
+          userAnswers[currentQuestionIndex] = option;
+
+          setTimeout(() => {
+            currentQuestionIndex += 1;
+            if (currentQuestionIndex < QUIZ_QUESTIONS.length) {
+              renderQuestion();
+            } else {
+              progressPercent.textContent = "100%";
+              progressBar.style.width = "100%";
+              runProcessingPhase();
+            }
+          }, 300);
+        });
+
+        optionsWrap.appendChild(btn);
+      });
+    }
+
+    function runProcessingPhase() {
+      showPhase("processing");
+      const statuses = [
+        "جاري مطابقة الاستجابات مع المصفوفة النفسية...",
+        "تحديد النمط الفرعي من بين 16 شخصية...",
+        "عزل نقطة القوة والعقدة الحاكمة..."
+      ];
+      let idx = 0;
+      processingText.textContent = statuses[0];
+
+      if (processingInterval) {
+        clearInterval(processingInterval);
+      }
+
+      processingInterval = setInterval(() => {
+        idx += 1;
+        if (idx < statuses.length) {
+          processingText.style.opacity = "0";
+          setTimeout(() => {
+            processingText.textContent = statuses[idx];
+            processingText.style.opacity = "1";
+          }, 120);
+        }
+      }, 1000);
+
+      setTimeout(() => {
+        clearInterval(processingInterval);
+        const result = calculateResult();
+        renderResult(result);
+        showPhase("result");
+      }, 3000);
+    }
+
+    function calculateResult() {
+      const mainScores = { A: 0, B: 0, C: 0, D: 0 };
+      const subScores = { 1: 0, 2: 0, 3: 0, 4: 0 };
+
+      userAnswers.forEach((answer, index) => {
+        if (index <= 4 && answer.main) {
+          mainScores[answer.main] += 1;
+        }
+        if (index >= 5 && answer.sub) {
+          subScores[answer.sub] += 1;
+        }
+      });
+
+      const dominantMain = getMaxKey(mainScores, ["A", "B", "C", "D"]);
+      const dominantSub = getMaxKey(subScores, ["1", "2", "3", "4"]);
+      const key = `${dominantMain}${dominantSub}`;
+
+      return {
+        key,
+        categoryScores: mainScores,
+        subScores
+      };
+    }
+
+    function getMaxKey(scoreObject, fallbackOrder) {
+      const maxScore = Math.max(...Object.values(scoreObject));
+      const winners = Object.keys(scoreObject).filter((k) => scoreObject[k] === maxScore);
+
+      for (const id of fallbackOrder) {
+        if (winners.includes(id)) {
+          return id;
+        }
+      }
+      return fallbackOrder[0];
+    }
+
+    function buildLongAnalysis(profile) {
+      return `تكشف بنيتك النفسية أنك تنتمي إلى شخصية تُخفي عمقها خلف هدوء محسوب، إذ تبدو في كثير من المواقف متماسكاً، بينما يدور في داخلك نقاش متواصل بين العقل الذي يطالبك بالدقة والقلب الذي يطالبك بالمعنى. ${profile.essence} وفي اللحظات الاجتماعية، أنت لا تنجرف مع الضجيج؛ بل تزن الأرواح قبل الكلمات، وتبحث عن الصدق الذي يُطمئنك لا عن الحضور العابر. لهذا يشعر المقربون منك أنك ملجأ ناضج، رغم أنك نادراً ما تكشف عن احتياجك الفعلي للدعم. ما يميّزك أيضاً أنك ترى التفاصيل الصغيرة التي يغفلها الآخرون، فتتنبأ بالتحولات قبل وقوعها. لكن هذه اليقظة العالية قد تتحول أحياناً إلى استنزاف صامت إذا حملت ما يفوق طاقتك، أو بقيت رهين التفكير الممتد حتى آخر الليل. قوتك الحقيقية ليست في الصلابة وحدها، بل في قدرتك على الموازنة بين الحزم والرحمة، بين الحدود والدفء، وبين الإنجاز وصون السلام الداخلي.`;
+    }
+
+    function renderResult(resultPayload) {
+      const profile = PERSONALITY_DATABASE[resultPayload.key] || PERSONALITY_DATABASE.B2;
+      const category = profile.mainLabel || MAIN_CATEGORY_LABELS[resultPayload.key[0]];
+
+      resultHeader.textContent = `نمطك النفسي المعتمد: ${category} — فرع: ${profile.subLabel}`;
+      analysisText.textContent = buildLongAnalysis(profile);
+
+      metricStrength.textContent = profile.strength;
+      metricSocial.textContent = profile.social;
+      metricDrain.textContent = profile.drain;
+
+      solutionIntro.textContent = profile.recoveryIntro;
+      solutionSteps.innerHTML = "";
+      profile.remedies.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        solutionSteps.appendChild(li);
+      });
+
+      lockCard.classList.remove("hidden");
+      verifyCard.classList.add("hidden");
+      unlockedSolution.classList.remove("unlocked");
+      restartBtn.classList.add("hidden");
+      countdownEl.textContent = "5";
+    }
+
+    function handleShareClick() {
+      const shareText = "صاوبت هاد اختبار الشخصية النفسي العميق وطلع عليا دقيق 100%! 😱 جرب شوفت حتى أنت شنو النمط ديالك من 16 شخصية";
+      const pageUrl = window.location.href;
+      const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}&quote=${encodeURIComponent(shareText)}`;
+      const calculated = calculateResult();
+
+      localStorage.setItem(RETURN_STATE_KEY, JSON.stringify({
+        resultKey: calculated.key,
+        userAnswers,
+        sharedAt: Date.now()
+      }));
+
+      lockCard.classList.add("hidden");
+      verifyCard.classList.remove("hidden");
+      startVerificationCountdown();
+
+      // Direct redirect to Facebook share dialog in the same tab (no popup window).
+      window.location.href = facebookUrl;
+
+      // === PLACE POPUNDER TRIGGER SCRIPT HERE ===
+    }
+
+    function startVerificationCountdown(initialRemaining = 5) {
+      let remaining = initialRemaining;
+      countdownEl.textContent = String(remaining);
+
+      if (countdownInterval) {
+        clearInterval(countdownInterval);
+      }
+
+      countdownInterval = setInterval(() => {
+        remaining -= 1;
+        countdownEl.textContent = String(remaining);
+
+        if (remaining <= 0) {
+          clearInterval(countdownInterval);
+          verifyCard.classList.add("hidden");
+          unlockedSolution.classList.add("unlocked");
+          restartBtn.classList.remove("hidden");
+          localStorage.removeItem(RETURN_STATE_KEY);
+        }
+      }, 1000);
+
+      // === PLACE ADSTERRA/MONETAG BANNER CODE HERE ===
+    }
+
+    function restoreAfterFacebookReturn() {
+      const rawState = localStorage.getItem(RETURN_STATE_KEY);
+      if (!rawState) {
+        return;
+      }
+
+      let saved;
+      try {
+        saved = JSON.parse(rawState);
+      } catch (_error) {
+        localStorage.removeItem(RETURN_STATE_KEY);
+        return;
+      }
+
+      if (!saved || !saved.resultKey || !saved.sharedAt) {
+        localStorage.removeItem(RETURN_STATE_KEY);
+        return;
+      }
+
+      if (Array.isArray(saved.userAnswers) && saved.userAnswers.length) {
+        userAnswers = saved.userAnswers;
+      }
+
+      renderResult({ key: saved.resultKey });
+      showPhase("result");
+      lockCard.classList.add("hidden");
+
+      const elapsedSec = Math.floor((Date.now() - saved.sharedAt) / 1000);
+      const remaining = Math.max(0, 5 - elapsedSec);
+
+      if (remaining === 0) {
+        verifyCard.classList.add("hidden");
+        unlockedSolution.classList.add("unlocked");
+        restartBtn.classList.remove("hidden");
+        localStorage.removeItem(RETURN_STATE_KEY);
+      } else {
+        verifyCard.classList.remove("hidden");
+        startVerificationCountdown(remaining);
+      }
+    }
+
+    function resetQuiz() {
+      if (processingInterval) {
+        clearInterval(processingInterval);
+      }
+      if (countdownInterval) {
+        clearInterval(countdownInterval);
+      }
+
+      currentQuestionIndex = 0;
+      userAnswers = [];
+      localStorage.removeItem(RETURN_STATE_KEY);
+      showPhase("welcome");
+    }
+  </script>
+</body>
+</html>
