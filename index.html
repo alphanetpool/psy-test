@@ -1002,6 +1002,12 @@
     restartBtn.addEventListener("click", resetQuiz);
     setupMonetagServiceWorker();
     restoreAfterFacebookReturn();
+    window.addEventListener("pageshow", restoreAfterFacebookReturn);
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") {
+        restoreAfterFacebookReturn();
+      }
+    });
 
     function setupMonetagServiceWorker() {
       if (!("serviceWorker" in navigator)) {
