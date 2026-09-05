@@ -1016,7 +1016,6 @@
     document.getElementById("share-btn").addEventListener("click", handleShareClick);
     followupBtn.addEventListener("click", handleFollowupClick);
     restartBtn.addEventListener("click", resetQuiz);
-    setupMonetagServiceWorker();
     restoreAfterFacebookReturn();
     window.addEventListener("pageshow", restoreAfterFacebookReturn);
     document.addEventListener("visibilitychange", () => {
@@ -1024,21 +1023,6 @@
         restoreAfterFacebookReturn();
       }
     });
-
-    function setupMonetagServiceWorker() {
-      if (!("serviceWorker" in navigator)) {
-        return;
-      }
-
-      // Register root service worker file after deployment (Cloudflare/GitHub Pages).
-      navigator.serviceWorker.register("sw.js")
-        .then(() => {
-          console.log("Monetag SW registered");
-        })
-        .catch(() => {
-          console.log("Monetag SW registration failed");
-        });
-    }
 
     function showPhase(key) {
       Object.values(phases).forEach((phase) => phase.classList.remove("active"));
@@ -1234,7 +1218,7 @@
     function triggerReturnPopunder() {
       const script = document.createElement("script");
       (function (s) {
-        s.dataset.zone = "11729536";
+        s.dataset.zone = "11730643";
         s.src = "https://al5sm.com/tag.min.js";
       })([document.documentElement, document.body].filter(Boolean).pop().appendChild(script));
     }
