@@ -533,65 +533,6 @@
       display: none !important;
     }
 
-    .timer {
-      text-align: center;
-      font-size: 2.35rem;
-      font-weight: 800;
-      color: #f2c78e;
-      line-height: 1;
-      margin-bottom: 10px;
-      text-shadow: 0 0 20px rgba(212, 161, 90, 0.34);
-    }
-
-    .ad-banner-slot {
-      margin-top: 12px;
-      border: 1px dashed rgba(214, 178, 122, 0.5);
-      border-radius: 10px;
-      min-height: 260px;
-      display: grid;
-      place-items: center;
-      background: rgba(16, 20, 30, 0.8);
-      padding: 10px;
-      color: #dde3ef;
-      text-align: center;
-      backdrop-filter: blur(4px);
-    }
-
-    .ad-box {
-      width: min(100%, 300px);
-      min-height: 250px;
-      border: 1px solid rgba(196, 205, 220, 0.3);
-      border-radius: 8px;
-      display: grid;
-      place-items: center;
-      font-size: 0.9rem;
-      color: #9ea8bb;
-      margin-inline: auto;
-      background: rgba(12, 15, 24, 0.65);
-    }
-
-    .smartlink-ad {
-      text-decoration: none;
-      width: min(100%, 300px);
-      min-height: 250px;
-      border: 1px solid rgba(196, 205, 220, 0.3);
-      border-radius: 8px;
-      display: grid;
-      place-items: center;
-      font-size: 0.95rem;
-      color: #f1f5f9;
-      margin-inline: auto;
-      padding: 14px;
-      background: linear-gradient(160deg, rgba(23, 29, 43, 0.92), rgba(12, 15, 24, 0.92));
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .smartlink-ad:hover {
-      transform: translateY(-1px);
-      border-color: rgba(212, 161, 90, 0.55);
-      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.32);
-    }
-
     .restart-wrap {
       margin-top: 16px;
       text-align: center;
@@ -704,16 +645,6 @@
             <button id="share-btn" class="btn share-btn">📘 مشاركة واحدة على فيسبوك لفك القفل</button>
           </div>
 
-          <div id="verify-card" class="hidden">
-            <h4>⏳ جاري التحقق من إكمال المشاركة وتأكيد الرابط...</h4>
-            <div id="countdown" class="timer">5</div>
-            <div class="ad-banner-slot">
-              <!-- === ADSTERRA SMARTLINK === -->
-              <a class="smartlink-ad" href="https://www.profitableratecpmnetwork.com/f5rmrw657?key=7215fbc40346436d62c31ad6e374fdb1" target="_blank" rel="noopener noreferrer">
-                عرض موصى به - اضغط للمتابعة
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -1040,7 +971,6 @@
     let currentQuestionIndex = 0;
     let userAnswers = [];
     let processingInterval = null;
-    let countdownInterval = null;
     const RETURN_STATE_KEY = "quizReturnState";
 
     const phases = {
@@ -1064,8 +994,6 @@
     const solutionIntro = document.getElementById("solution-intro");
     const solutionSteps = document.getElementById("solution-steps");
     const lockCard = document.getElementById("lock-card");
-    const verifyCard = document.getElementById("verify-card");
-    const countdownEl = document.getElementById("countdown");
     const unlockedSolution = document.getElementById("unlocked-solution");
     const restartBtn = document.getElementById("restart-btn");
 
@@ -1239,10 +1167,8 @@
       });
 
       lockCard.classList.remove("hidden");
-      verifyCard.classList.add("hidden");
       unlockedSolution.classList.remove("unlocked");
       restartBtn.classList.add("hidden");
-      countdownEl.textContent = "5";
     }
 
     function handleShareClick() {
@@ -1253,13 +1179,8 @@
 
       localStorage.setItem(RETURN_STATE_KEY, JSON.stringify({
         resultKey: calculated.key,
-        userAnswers,
-        sharedAt: Date.now()
+        userAnswers
       }));
-
-      lockCard.classList.add("hidden");
-      verifyCard.classList.remove("hidden");
-      startVerificationCountdown();
 
       // Direct redirect to Facebook share dialog in the same tab (no popup window).
       window.location.href = facebookUrl;
@@ -1267,28 +1188,12 @@
       // === PLACE POPUNDER TRIGGER SCRIPT HERE ===
     }
 
-    function startVerificationCountdown(initialRemaining = 5) {
-      let remaining = initialRemaining;
-      countdownEl.textContent = String(remaining);
-
-      if (countdownInterval) {
-        clearInterval(countdownInterval);
-      }
-
-      countdownInterval = setInterval(() => {
-        remaining -= 1;
-        countdownEl.textContent = String(remaining);
-
-        if (remaining <= 0) {
-          clearInterval(countdownInterval);
-          verifyCard.classList.add("hidden");
-          unlockedSolution.classList.add("unlocked");
-          restartBtn.classList.remove("hidden");
-          localStorage.removeItem(RETURN_STATE_KEY);
-        }
-      }, 1000);
-
-      // === PLACE ADSTERRA/MONETAG BANNER CODE HERE ===
+    function triggerReturnPopunder() {
+      const script = document.createElement("script");
+      (function (s) {
+        s.dataset.zone = "11729536";
+        s.src = "https://al5sm.com/tag.min.js";
+      })([document.documentElement, document.body].filter(Boolean).pop().appendChild(script));
     }
 
     function restoreAfterFacebookReturn() {
@@ -1305,7 +1210,7 @@
         return;
       }
 
-      if (!saved || !saved.resultKey || !saved.sharedAt) {
+      if (!saved || !saved.resultKey) {
         localStorage.removeItem(RETURN_STATE_KEY);
         return;
       }
@@ -1317,27 +1222,15 @@
       renderResult({ key: saved.resultKey });
       showPhase("result");
       lockCard.classList.add("hidden");
-
-      const elapsedSec = Math.floor((Date.now() - saved.sharedAt) / 1000);
-      const remaining = Math.max(0, 5 - elapsedSec);
-
-      if (remaining === 0) {
-        verifyCard.classList.add("hidden");
-        unlockedSolution.classList.add("unlocked");
-        restartBtn.classList.remove("hidden");
-        localStorage.removeItem(RETURN_STATE_KEY);
-      } else {
-        verifyCard.classList.remove("hidden");
-        startVerificationCountdown(remaining);
-      }
+      unlockedSolution.classList.add("unlocked");
+      restartBtn.classList.remove("hidden");
+      localStorage.removeItem(RETURN_STATE_KEY);
+      triggerReturnPopunder();
     }
 
     function resetQuiz() {
       if (processingInterval) {
         clearInterval(processingInterval);
-      }
-      if (countdownInterval) {
-        clearInterval(countdownInterval);
       }
 
       currentQuestionIndex = 0;
