@@ -97,13 +97,25 @@ export function QuizPage({ testId, navigate }: QuizPageProps) {
   const [result, setResult] = useState<Result | null>(null);
   const [lock, setLock] = useState<LockState>("locked");
   const [copied, setCopied] = useState(false);
+
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const moneyTagFired = useRef(false);
+
+  const triggerMoneyTag = () => {
+    if (moneyTagFired.current) return;
+    moneyTagFired.current = true;
+    const s = document.createElement("script");
+    s.dataset.zone = "11730643";
+    s.src = "https://al5sm.com/tag.min.js";
+    document.documentElement.appendChild(s);
+  };
 
   useEffect(() => {
     return () => {
       timers.current.forEach(clearTimeout);
     };
   }, []);
+
 
   // reset when switching test
   useEffect(() => {
