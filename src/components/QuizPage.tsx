@@ -10,7 +10,6 @@ import {
   Home,
   ListChecks,
   Lock,
-  LockOpen,
   Map as MapIcon,
   PartyPopper,
   RotateCcw,
@@ -27,7 +26,7 @@ import { cn } from "../utils/cn";
 import { CounterBadge } from "./CounterBadge";
 
 type Phase = "welcome" | "quiz" | "processing" | "result";
-type LockState = "locked" | "followup" | "unlocked";
+type LockState = "locked" | "unlocked";
 
 interface Result {
   title: string;
@@ -99,23 +98,12 @@ export function QuizPage({ testId, navigate }: QuizPageProps) {
   const [copied, setCopied] = useState(false);
 
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
-  const moneyTagFired = useRef(false);
-
-  const triggerMoneyTag = () => {
-    if (moneyTagFired.current) return;
-    moneyTagFired.current = true;
-    const s = document.createElement("script");
-    s.dataset.zone = "11730643";
-    s.src = "https://al5sm.com/tag.min.js";
-    document.documentElement.appendChild(s);
-  };
 
   useEffect(() => {
     return () => {
       timers.current.forEach(clearTimeout);
     };
   }, []);
-
 
   // reset when switching test
   useEffect(() => {
@@ -226,13 +214,13 @@ export function QuizPage({ testId, navigate }: QuizPageProps) {
   const handleShare = () => {
     const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
     window.open(url, "_blank", "width=600,height=540");
-    timers.current.push(setTimeout(() => setLock("followup"), 1200));
+    timers.current.push(setTimeout(() => setLock("unlocked"), 1000));
   };
 
   const handleWhatsapp = () => {
     const text = `🧠 جرّبت ${config.badge} وكانت النتيجة صادمة! جرّبه أنت أيضاً: ${shareUrl}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
-    timers.current.push(setTimeout(() => setLock("followup"), 1200));
+    timers.current.push(setTimeout(() => setLock("unlocked"), 1000));
   };
 
   const handleCopy = async () => {
@@ -240,6 +228,7 @@ export function QuizPage({ testId, navigate }: QuizPageProps) {
       await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+      timers.current.push(setTimeout(() => setLock("unlocked"), 1000));
     } catch {
       setCopied(false);
     }
@@ -504,38 +493,31 @@ export function QuizPage({ testId, navigate }: QuizPageProps) {
                   <div className="anim-scale-in absolute inset-x-3 bottom-3 rounded-2xl border border-amber-500/40 bg-[#090c14]/95 p-4 shadow-2xl backdrop-blur sm:inset-x-5 sm:bottom-5 sm:p-5">
                     <h5 className="flex items-center gap-2 text-[13px] font-black leading-7 text-white sm:text-sm">
                       <Lock className="h-4 w-4 shrink-0 text-amber-300" />
-                      النتيجة جاهزة! شارك الاختبار لفتح التقرير السيكولوجي الكامل لعقليتك
+                      النتيجة جاهزة! قم بمشاركة الاختبار لفك القفل وإظهار خريطة التعافي والتقرير الكامل
                     </h5>
-                    <p className="mt-1 text-[12px] leading-6 text-slate-300">اضغط مشاركة، وبعد الرجوع اضغط متابعة ثم إكمال النتيجة.</p>
+                    <p className="mt-1 text-[12px] leading-6 text-slate-300">
+                      اضغط على أحد أزرار المشاركة لفك القفل فوراً وإظهار خريطة الاتزان والتقرير النهائي لعقليتك.
+                    </p>
                     <div className="mt-3 grid gap-2 sm:grid-cols-3">
-                      <button onClick={handleShare} className="flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-l from-emerald-600 to-emerald-500 px-4 py-3 text-[13px] font-black text-white shadow transition hover:brightness-110">
-                        📘 مشاركة على فيسبوك
+                      <button
+                        onClick={handleShare}
+                        className="flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-l from-emerald-600 to-emerald-500 px-4 py-3 text-[13px] font-black text-white shadow transition hover:brightness-110 active:scale-[0.99]"
+                      >
+                        📘 مشاركة على فيسبوك لفك القفل
                       </button>
-                      <button onClick={handleWhatsapp} className="flex items-center justify-center gap-1.5 rounded-xl border border-emerald-400/40 bg-emerald-500/10 px-4 py-3 text-[13px] font-black text-emerald-200 transition hover:bg-emerald-500/20">
+                      <button
+                        onClick={handleWhatsapp}
+                        className="flex items-center justify-center gap-1.5 rounded-xl border border-emerald-400/40 bg-emerald-500/10 px-4 py-3 text-[13px] font-black text-emerald-200 transition hover:bg-emerald-500/20 active:scale-[0.99]"
+                      >
                         <Share2 className="h-4 w-4" /> واتساب
                       </button>
-                      <button onClick={handleCopy} className="flex items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-[13px] font-black text-slate-200 transition hover:bg-white/10">
-                        <Copy className="h-4 w-4" /> {copied ? "تم النسخ ✓" : "نسخ الرابط"}
+                      <button
+                        onClick={handleCopy}
+                        className="flex items-center justify-center gap-1.5 rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-[13px] font-black text-slate-200 transition hover:bg-white/10 active:scale-[0.99]"
+                      >
+                        <Copy className="h-4 w-4" /> {copied ? "تم النسخ وفك القفل ✓" : "نسخ الرابط"}
                       </button>
                     </div>
-                  </div>
-                )}
-
-                {lock === "followup" && (
-                  <div className="anim-scale-in absolute inset-x-3 bottom-3 rounded-2xl border border-emerald-400/40 bg-[#090c14]/95 p-4 shadow-2xl backdrop-blur sm:inset-x-5 sm:bottom-5 sm:p-5">
-                    <h5 className="flex items-center gap-2 text-sm font-black text-white">
-                      <CheckCircle2 className="h-5 w-5 text-emerald-400" /> تم رصد المشاركة بنجاح
-                    </h5>
-                    <p className="mt-1 text-[12px] leading-6 text-slate-300">اضغط متابعة الآن لإظهار خريطة التعافي الكاملة وفتح تقريرك النهائي.</p>
-                    <button
-                      onClick={() => {
-                        setLock("unlocked");
-                        window.scrollTo({ top: 0, behavior: "smooth" });
-                      }}
-                      className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-l from-emerald-600 to-emerald-500 px-4 py-3 text-sm font-black text-white shadow transition hover:brightness-110"
-                    >
-                      <LockOpen className="h-4 w-4" /> متابعة — إكمال النتيجة وفتح التقرير
-                    </button>
                   </div>
                 )}
               </div>
