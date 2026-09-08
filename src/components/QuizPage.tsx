@@ -43,6 +43,8 @@ interface QuizPageProps {
   navigate: (r: Route) => void;
 }
 
+const DIRECT_AD_LINK = "https://omg10.com/4/11749860";
+
 export function QuizPage({ testId, navigate }: QuizPageProps) {
   const isPersonality = testId === "personality";
 
@@ -97,26 +99,9 @@ export function QuizPage({ testId, navigate }: QuizPageProps) {
   const [result, setResult] = useState<Result | null>(null);
   const [lock, setLock] = useState<LockState>("locked");
   const [copied, setCopied] = useState(false);
-  // النقرة الأولى على "متابعة" تشغّل الـ popunder، الثانية تفتح النتيجة
   const [tagFired, setTagFired] = useState(false);
 
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
-  const adScriptEl = useRef<HTMLScriptElement | null>(null);
-
-  // Popunder Ad Script (Zone: 11749839)
-  const loadFollowupAd = () => {
-    if (adScriptEl.current) return;
-    try {
-      const script = document.createElement("script");
-      script.dataset.zone = "11749839";
-      script.src = "https://al5sm.com/tag.min.js";
-      const host = [document.documentElement, document.body].filter(Boolean).pop() as HTMLElement;
-      host.appendChild(script);
-      adScriptEl.current = script;
-    } catch {
-      /* ignore */
-    }
-  };
 
   useEffect(() => {
     return () => {
@@ -255,11 +240,11 @@ export function QuizPage({ testId, navigate }: QuizPageProps) {
     }
   };
 
-  // زر متابعة: النقرة الأولى تشغّل الـ popunder، الثانية تفتح النتيجة
+  // النقرة الأولى تفتح Direct Link والإعلانات، والنقرة الثانية تظهر التقرير النهائى
   const handleFollowup = () => {
     if (!tagFired) {
       setTagFired(true);
-      loadFollowupAd();
+      window.open(DIRECT_AD_LINK, "_blank");
       return;
     }
     setLock("unlocked");
@@ -561,7 +546,7 @@ export function QuizPage({ testId, navigate }: QuizPageProps) {
                     </h5>
                     <p className="mt-1 text-[12px] leading-6 text-slate-300">
                       {tagFired
-                        ? "✅ تم التحميل. اضغط الزر مرة ثانية لإظهار الجزء النهائي."
+                        ? "✅ اضغط الزر مرة ثانية لإظهار الجزء النهائي والتقرير الكامل."
                         : "اضغط متابعة لتأكيد الإكمال، ثم اضغط مرة ثانية لإظهار الجزء النهائي."}
                     </p>
                     <button
