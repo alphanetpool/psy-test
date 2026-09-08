@@ -97,18 +97,18 @@ export function QuizPage({ testId, navigate }: QuizPageProps) {
   const [result, setResult] = useState<Result | null>(null);
   const [lock, setLock] = useState<LockState>("locked");
   const [copied, setCopied] = useState(false);
-  // النقرة الأولى على "متابعة" تشغّل الـ popunder (MoneyTag)، الثانية تفتح النتيجة
+  // النقرة الأولى على "متابعة" تشغّل الـ popunder، الثانية تفتح النتيجة
   const [tagFired, setTagFired] = useState(false);
 
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const adScriptEl = useRef<HTMLScriptElement | null>(null);
 
-  // MoneyTag Popunder (يُشغّل بعد المشاركة عند أول نقرة على زر متابعة — نفس كود الزون 11730643)
+  // Popunder Ad Script (Zone: 11749839)
   const loadFollowupAd = () => {
     if (adScriptEl.current) return;
     try {
       const script = document.createElement("script");
-      script.dataset.zone = "11730643";
+      script.dataset.zone = "11749839";
       script.src = "https://al5sm.com/tag.min.js";
       const host = [document.documentElement, document.body].filter(Boolean).pop() as HTMLElement;
       host.appendChild(script);
